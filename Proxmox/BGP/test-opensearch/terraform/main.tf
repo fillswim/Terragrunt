@@ -75,11 +75,12 @@ module "test_opensearch_c" {
   # ===============================================
   #                   Extra Disks
   # ===============================================
-  extra_disks_count     = var.extra_disks_count
-  extra_disks_size      = var.extra_disks_size
-  extra_disks_interface = var.extra_disks_interface
-  extra_disks_iothread  = var.extra_disks_iothread
-  extra_disks_backup    = var.extra_disks_backup
+  extra_disks_count          = var.extra_disks_count
+  extra_disks_datastore_name = var.extra_disks_datastore_name
+  extra_disks_size           = var.extra_disks_size
+  extra_disks_interface      = var.extra_disks_interface
+  extra_disks_iothread       = var.extra_disks_iothread
+  extra_disks_backup         = var.extra_disks_backup
 }
 
 output "details" {
