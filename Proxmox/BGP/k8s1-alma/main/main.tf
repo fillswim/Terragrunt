@@ -18,16 +18,18 @@ resource "local_file" "user_data_tmpl" {
     ssh_authorized_keys_2 = var.ssh_public_keys_2
     ssh_authorized_keys_3 = var.ssh_public_keys_3
     ssh_authorized_keys_4 = var.ssh_public_keys_4
+    ssh_authorized_keys_5 = var.ssh_public_keys_5
+    ssh_authorized_keys_6 = var.ssh_public_keys_6
   })
   filename = "${path.module}/${var.folder_name}/${var.user_data_file_name}"
 }
 
 
-module "test_opensearch_c" {
+module "K8s1_alma" {
 
   depends_on = [local_file.user_data_tmpl]
 
-  source = "/home/fill/Terraform-Modules/Proxmox/bpg/0.77.1/v1/instance"
+  source = "/home/fill/Terraform-Modules/Proxmox/bpg/0.77.1/v2/instance"
 
   # ================================================
   #                  SSH Connection
@@ -39,6 +41,7 @@ module "test_opensearch_c" {
   # ================================================
   count_vms       = var.count_vms
   vm_name         = var.vm_name
+  node_splitting  = var.node_splitting
   proxmox_node    = var.proxmox_node
   memory          = var.memory
   on_boot         = var.on_boot
@@ -84,5 +87,5 @@ module "test_opensearch_c" {
 }
 
 output "details" {
-  value = module.test_opensearch_c.details
+  value = module.K8s1_alma.details
 }
