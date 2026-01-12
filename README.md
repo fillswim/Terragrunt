@@ -9,5 +9,9 @@ terragrunt plan -all
 ```
 
 ```bash
+terragrunt apply -all
+```
+
+```bash
 terragrunt destroy -all
 ```

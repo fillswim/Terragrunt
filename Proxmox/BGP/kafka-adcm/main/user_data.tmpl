@@ -11,7 +11,12 @@ users:
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
     ssh_authorized_keys:
+      - ${ssh_authorized_keys_1}
+      - ${ssh_authorized_keys_2}
+      - ${ssh_authorized_keys_3}
+      - ${ssh_authorized_keys_4}
       - ${ssh_authorized_keys_5}
+      - ${ssh_authorized_keys_6}
 chpasswd:
   expire: false
 package_update: true
@@ -30,6 +35,6 @@ runcmd:
   - systemctl enable qemu-guest-agent --now
   - systemctl enable chronyd --now
   - sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/openssh/sshd_config
-  - sed -i 's/^#Port 22$/Port 20122/' /etc/openssh/sshd_config
+  # - sed -i 's/^#Port 22$/Port 20122/' /etc/openssh/sshd_config
   - systemctl restart sshd
   - echo "done" > /tmp/cloud-config.done
